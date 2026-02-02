@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-multipart
+opencv-python
+pillow
+numpy
+pytesseract
+fastapi
+uvicorn
+python-multipart
+opencv-python
+pytesseract
+pillow
+numpy
+imutils
+regex
