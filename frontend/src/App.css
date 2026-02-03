@@ -1,0 +1,209 @@
+:root {
+  --obsidian: #030712;
+  --neon-blue: #3b82f6;
+  --neon-purple: #8b5cf6;
+  --grid-color: rgba(59, 130, 246, 0.12);
+}
+
+body {
+  margin: 0;
+  background-color: var(--obsidian);
+  color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(30, 58, 138, 0.2) 0px, transparent 50%);
+}
+
+/* Blueprint Grid Pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 45px 45px;
+  z-index: -1;
+}
+
+/* Nav & Logo */
+.nav-header {
+  position: fixed;
+  top: 0; width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(3, 7, 18, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.logo { font-weight: 900; letter-spacing: 2px; font-size: 1.4rem; }
+.secure-tag { color: var(--neon-blue); font-size: 0.8rem; font-weight: 700; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 20px 60px 20px;
+}
+
+.glass-panel {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  padding: 60px 40px;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+.main-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+.main-title span {
+  background: linear-gradient(to right, #3b82f6, #60a5fa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-text { color: #94a3b8; margin-bottom: 40px; }
+
+/* Interactive Upload Zone */
+.upload-zone {
+  position: relative;
+  border: 1px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 24px;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-choose {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neon-blue);
+  pointer-events: none;
+}
+
+.upload-zone:hover {
+  border-color: var(--neon-blue);
+  background: rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
+}
+
+.file-input {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.btn-scan {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  color: white;
+  border: none;
+  padding: 18px 60px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+}
+
+/* --- LOGO BACKGROUND REMOVAL & AESTHETIC FOOTER --- */
+.external-footer {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.powered-by {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #64748b;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.powered-by span {
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+/* --- FULL BLEND & NEON POP --- */
+
+.footer-logo-visible {
+  height: 150px;
+  width: auto;
+  cursor: pointer;
+  
+  /* 1. THE BLEND MAGIC */
+  /* This forces the dark background of your JPEG to become transparent 
+     against the website's dark background. */
+  mix-blend-mode: screen; 
+
+  /* 2. COLOR & CONTRAST TUNING */
+  /* contrast(140%): Crushes any 'off-black' gray noise in your JPEG into pure black so it disappears.
+     brightness(110%): Keeps the gold vibrant and opaque.
+     Note: No grayscale here to preserve the original gold color. */
+  filter: contrast(140%) brightness(110%);
+
+  /* 3. CLEANUP & MERGE */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+
+  /* 4. STRAIGHT POP EFFECT */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: rotate(0deg); 
+}
+
+.footer-logo-visible:hover {
+  /* Grows straight toward the pointer without any tilt or glow */
+  transform: scale(1.25);
+  /* Makes the gold shine even more on hover */
+  filter: contrast(150%) brightness(1.3);
+}
+
+/* Results section */
+.result-display {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+  margin-top: 50px;
+  text-align: left;
+}
+.data-preview {
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  font-size: 0.8rem;
+}
