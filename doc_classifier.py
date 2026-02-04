@@ -1,15 +1,18 @@
-def classify(text):
-    t = text.lower()
+def classify_document(texts):
+    text = " ".join(texts).upper()
 
-    if "aadhaar" in t or "uidai" in t:
-        return "aadhaar"
-    if "income tax" in t or "permanent account number" in t or "pan" in t:
-        return "pan"
-    if "driving licence" in t or "dl no" in t:
-        return "driving_license"
-    if "university" in t or "board of" in t or "marksheet" in t or "grade" in t:
-        return "marksheet"
+    if "AADHAAR" in text:
+        return "Aadhaar"
+    if "PERMANENT ACCOUNT NUMBER" in text:
+        return "PAN"
+    if "DRIVING LICENCE" in text or "DL NO" in text:
+        return "Driving License"
+    if "UNIVERSITY" in text or "MARKS" in text:
+        return "Marksheet"
 
-    return "unknown"
+    return "Unknown"
+
+
+
 
 

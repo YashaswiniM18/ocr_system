@@ -8,22 +8,33 @@ function App() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
 
   const startOCR = async () => {
     if (!file) return;
+
     setLoading(true);
+    setError(null);
+    setResult(null);
+
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-      const response = await fetch(`${API_BASE}/upload/`, { 
-        method: 'POST', 
-        body: formData 
+      const response = await fetch(`${API_BASE}/upload`, {
+        method: 'POST',
+        body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error("Backend error");
+      }
+
       const data = await response.json();
       setResult(data);
-    } catch (e) {
-      console.error("OCR System Error:", e);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to process document");
     } finally {
       setLoading(false);
     }
@@ -41,62 +52,84 @@ function App() {
         {/* Main Scanner Panel */}
         <div className="glass-panel">
           <header className="panel-header">
-            <h1 className="main-title">Image <span>Scanner</span></h1>
-            <p className="sub-text">Real-time OCR & Image Extraction Engine</p>
+            <h1 className="main-title">
+              Image <span>Scanner</span>
+            </h1>
+            <p className="sub-text">
+              Real-time OCR & Image Extraction Engine
+            </p>
           </header>
 
+          {/* DROP ZONE — UNCHANGED */}
           <div className="upload-zone">
             <div className="upload-content">
               <div className="icon-upload">📁</div>
               <p className="upload-label">
                 {file ? `Selected: ${file.name}` : "Drop Identity Document (JPG / PNG)"}
               </p>
-              {/* Manual Choose File Button UI */}
               <div className="btn-choose">Choose File</div>
             </div>
-            <input 
-              type="file" 
+
+            <input
+              type="file"
+              accept="image/*"
               onChange={(e) => setFile(e.target.files[0])}
               className="file-input"
             />
           </div>
 
-          <button 
-            className="btn-scan" 
-            onClick={startOCR} 
+          <button
+            className="btn-scan"
+            onClick={startOCR}
             disabled={loading || !file}
           >
             {loading ? "SCANNING ASSETS..." : "INITIATE SCAN"}
           </button>
 
-          {/* Results Display Area */}
+          {error && <p className="error-text">{error}</p>}
+
+          {/* RESULTS */}
           {result && (
             <div className="result-display">
+              {/* METADATA */}
               <div className="metadata-box">
                 <h3 className="section-label">EXTRACTED METADATA</h3>
                 <pre className="data-preview">
-                  {JSON.stringify(result.fields, null, 2)}
+                  {JSON.stringify(result.extracted_fields, null, 2)}
                 </pre>
               </div>
-              
+
+              {/* IMAGE ASSETS */}
               <div className="assets-box">
                 <h3 className="section-label">IMAGE ASSETS</h3>
+
                 <div className="asset-row">
-                  <div className="asset-card">
-                    <span>FACE</span>
-                    <img src={`${API_BASE}/${result.face_image}`} alt="Face" />
-                  </div>
-                  <div className="asset-card">
-                    <span>SIGNATURE</span>
-                    <img src={`${API_BASE}/${result.signature_image}`} alt="Sign" />
-                  </div>
+                  {result.face_image && (
+                    <div className="asset-card">
+                      <span>FACE</span>
+                      <img
+                        src={`${API_BASE}/${result.face_image}`}
+                        alt="Face"
+                      />
+                    </div>
+                  )}
+
+                  {result.signature_image && (
+                    <div className="asset-card">
+                      <span>SIGNATURE</span>
+                      <img
+                        src={`${API_BASE}/${result.signature_image}`}
+                        alt="Signature"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           )}
         </div>
 
-        {/* Enhanced Aesthetic Footer */}
+        {/* Footer */}
         <footer className="external-footer">
           <p className="powered-by">
             Powered by <span>ETHERX INNOVATIONS</span>

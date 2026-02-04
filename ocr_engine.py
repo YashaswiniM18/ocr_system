@@ -1,53 +1,28 @@
-import cv2
-import pytesseract
-import os
+from paddleocr import PaddleOCR
 
-from image_preprocessing import preprocess
-from doc_classifier import classify
-from vision_assets import extract_assets
+ocr = PaddleOCR(
+    use_angle_cls=True,
+    lang="en",
+    use_gpu=False,
+    enable_mkldnn=False
+)
 
-from field_extractors import aadhaar, pan, driving_license, marksheet
-
-
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
-def clean_text(text):
-    return text.replace("O", "0").replace("I", "1")
-
-def extract_fields(text, doc_type):
-    if doc_type == "aadhaar":
-        return aadhaar.extract(text)
-    if doc_type == "pan":
-        return pan.extract(text)
-    if doc_type == "driving_license":
-        return driving_license.extract(text)
-    if doc_type == "marksheet":
-        return marksheet.extract(text)
-    return {}
-
-def process_document(image_path):
-    filename = os.path.basename(image_path)
-
-    image = cv2.imread(image_path)
-    original, processed = preprocess(image)
-
-    raw_text = pytesseract.image_to_string(processed, config="--oem 3 --psm 6")
-    raw_text = clean_text(raw_text)
-
-    doc_type = classify(raw_text)
-    fields = extract_fields(raw_text, doc_type)
-
-    face_path, sign_path = extract_assets(original, filename)
-
-    return {
-        "document_type": doc_type,
-        "raw_text": raw_text,
-        "fields": fields,
-        "face_image": face_path,
-        "signature_image": sign_path
-    }
+def run_ocr(image):
+    result = ocr.ocr(image, cls=True)
+    texts = [line[1][0] for line in result[0]]
+    return texts
 
 
+def run_ocr(image):
+    result = ocr.ocr(image)
+    texts = []
+
+    if result:
+        for line in result:
+            for word in line:
+                texts.append(word[1][0])
+
+    return texts
 
 
 
