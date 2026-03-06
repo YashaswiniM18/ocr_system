@@ -18,5 +18,6 @@ services:
     name: etherxvision-frontend
     env: static
     branch: main
-    buildCommand: cd ocr-frontend && npm install && npm run build
-    staticPublishPath: ocr-frontend/dist
+    rootDir: ocr-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
