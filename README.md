@@ -1,6 +1,6 @@
-# Nex-OCR: Real-Time Document Intelligence System
+# EtherXVision: Real-Time Document Intelligence System
 
-Nex-OCR is a high-performance, FastAPI-based backend system designed for **automated document classification, field extraction, and biometric asset extraction**. It specializes in processing Indian documents with high precision using the PaddleOCR engine.
+EtherXVision is a high-performance, FastAPI-based backend system designed for **automated document classification, field extraction, and biometric asset extraction**. It specializes in processing Indian documents with high precision using the PaddleOCR engine.
 
 ---
 
@@ -107,8 +107,3 @@ Returns the status of the server and OCR engine.
 
 The project includes built-in cleanup policies. Session data in `uploads/` and `outputs/` is ignored by Git, but can be manually cleared. The system generates `.gitkeep` files to maintain folder structure.
 
----
-
-## 🤝 Contribution
-
-For internal Nex teams, please follow the standard PR workflow on the `OcrModel` repository.
