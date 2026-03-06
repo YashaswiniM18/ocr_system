@@ -107,8 +107,3 @@ Returns the status of the server and OCR engine.
 
 The project includes built-in cleanup policies. Session data in `uploads/` and `outputs/` is ignored by Git, but can be manually cleared. The system generates `.gitkeep` files to maintain folder structure.
 
----
-
-## 🤝 Contribution
-
-For internal Nex teams, please follow the standard PR workflow on the `OcrModel` repository.
