@@ -152,7 +152,7 @@ def _is_valid_name(text, invalid_keywords):
     letter_count = sum(c.isalpha() for c in text)
     if letter_count < 3: return False
         
-    return None
+    return True
 
 def extract_dob(text_lines):
     # Dates on these lines are card-metadata, not the holder's DOB
