@@ -9,7 +9,6 @@ numpy==1.26.4
 pillow==10.2.0
 
 paddleocr==2.7.3
-paddlepaddle==2.6.1
+paddlepaddle==2.6.2
 
 # regex==2023.12.25        # Optional: Keep only if you use 'import regex' 
-
