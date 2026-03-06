@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import logo from './assets/logo.png';
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://etherxvision-backend.onrender.com";
 
 // Updated steps to match your Internship Project flow
 const STEPS = ["UPLOAD", "PREPROCESS", "ANALYSIS", "EXTRACTION"];
