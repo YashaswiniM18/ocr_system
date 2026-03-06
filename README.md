@@ -1,6 +1,6 @@
-# Nex-OCR: Real-Time Document Intelligence System
+# EtherXVision: Real-Time Document Intelligence System
 
-Nex-OCR is a high-performance, FastAPI-based backend system designed for **automated document classification, field extraction, and biometric asset extraction**. It specializes in processing Indian documents with high precision using the PaddleOCR engine.
+EtherXVision is a high-performance, FastAPI-based backend system designed for **automated document classification, field extraction, and biometric asset extraction**. It specializes in processing Indian documents with high precision using the PaddleOCR engine.
 
 ---
 
