@@ -129,7 +129,7 @@ async def _process_upload(file: UploadFile) -> dict:
     image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     if image is None:
-        return {"error": "Invalid image format or unsupported file type"}
+        return {"detail": "Invalid image format or unsupported file type"}
 
     # ── OCR (CPU-bound → thread) ──────────────────────────────────────────────
     texts, raw_ocr_data = await run_in_thread(run_ocr, image)
@@ -140,14 +140,17 @@ async def _process_upload(file: UploadFile) -> dict:
 
     # ── Parallel: field extraction + asset extraction ─────────────────────────
     async def extract_fields_task():
-        if doc_type == "Aadhaar":
-            return await run_in_thread(aadhaar.extract_aadhaar_fields, texts)
-        elif doc_type == "PAN":
-            return await run_in_thread(pan.extract, texts, raw_ocr_data)
-        elif doc_type == "Driving License":
-            return await run_in_thread(dl.extract, texts, image)
-        elif doc_type == "Marksheet":
-            return await run_in_thread(marksheet.extract, texts, image, raw_ocr_data)
+        try:
+            if doc_type == "Aadhaar":
+                return await run_in_thread(aadhaar.extract_aadhaar_fields, texts)
+            elif doc_type == "PAN":
+                return await run_in_thread(pan.extract, texts, raw_ocr_data)
+            elif doc_type == "Driving License":
+                return await run_in_thread(dl.extract, texts, image)
+            elif doc_type == "Marksheet":
+                return await run_in_thread(marksheet.extract, texts, image, raw_ocr_data)
+        except Exception as e:
+            logger.error(f"Field extraction failed for doc_type={doc_type}: {e}", exc_info=True)
         return {}
 
     async def extract_assets_task():
@@ -223,12 +226,13 @@ async def upload_document(file: UploadFile = File(...)):
 
     except asyncio.TimeoutError:
         _metrics["requests_error"] += 1
-        logger.error(f"Request timed out after {REQUEST_TIMEOUT}s")
+        msg = f"Request timed out after {REQUEST_TIMEOUT}s"
+        logger.error(msg)
         return JSONResponse(
-            {"error": f"Request timed out after {REQUEST_TIMEOUT:.0f} seconds"},
+            {"detail": msg},
             status_code=408,
         )
     except Exception as exc:
         _metrics["requests_error"] += 1
         logger.exception(f"Unhandled error during /upload: {exc}")
-        return JSONResponse({"error": "Internal server error"}, status_code=500)
+        return JSONResponse({"detail": "Internal server error"}, status_code=500)

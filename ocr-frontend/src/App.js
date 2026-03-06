@@ -40,7 +40,7 @@ function App() {
         let msg = "Backend error";
         try {
           const errBody = await response.json();
-          msg = errBody.detail || msg;
+          msg = errBody.detail || errBody.error || msg;
         } catch (e) { }
         throw new Error(msg);
       }

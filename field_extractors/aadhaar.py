@@ -152,31 +152,6 @@ def _is_valid_name(text, invalid_keywords):
     letter_count = sum(c.isalpha() for c in text)
     if letter_count < 3: return False
         
-    return True
-
-    # Fallback: Forward search if no anchor or anchor search failed
-    for line in cleaned_lines:
-        l_lower = line.lower()
-        if len(line) < 6: continue
-        
-        # Explicit "Name:" field
-        if l_lower.startswith("name:") or l_lower.startswith("name :"):
-             parts = line.split(":")
-             if len(parts) > 1:
-                 val = parts[1].strip()
-                 if len(val) > 2 and not any(char.isdigit() for char in val):
-                     return clean_name(val)
-
-        # Skip invalid keyword lines
-        if any(k in l_lower for k in invalid_keywords):
-            continue
-
-        # Strict regex for standalone name line in fallback mode
-        if re.fullmatch(r"[A-Za-z\s]+", line):
-            words = line.split()
-            if 1 < len(words) <= 4:
-                return clean_name(line)
-
     return None
 
 def extract_dob(text_lines):
