@@ -12,7 +12,7 @@ services:
       - key: WORKERS
         value: 1
 
-  - type: static_site
+  - type: static
     name: etherxvision-frontend
     env: static
     branch: main
