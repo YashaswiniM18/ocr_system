@@ -599,7 +599,8 @@ body::before {
   }
 
   .main-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
   }
 
   .sub-text {
@@ -647,14 +648,16 @@ body::before {
   }
 
   .powered-by {
-    letter-spacing: 0.5px;
-    font-size: 0.65rem;
+    letter-spacing: 0.2px;
+    font-size: 0.6rem;
     padding: 0 10px;
     text-align: center;
+    max-width: 100%;
+    line-height: 1.4;
   }
 }
 
-/* Cache-Buster: v1.0.2 - Fixed Mobile Alignment */
+/* Cache-Buster: v1.0.3 - Absolute Final Mobile Alignment */
 
 @keyframes spin {
   to {
