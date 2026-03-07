@@ -323,12 +323,12 @@ body::before {
 
   font-size: 0.75rem;
   color: #64748b;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: none;
   font-weight: 300;
   line-height: 1.5;
   text-align: center;
-  max-width: 90%;
+  white-space: nowrap;
 
 }
 
@@ -656,6 +656,7 @@ body::before {
     text-align: center;
     max-width: 100%;
     line-height: 1.4;
+    white-space: normal;
   }
 }
 
