@@ -76,7 +76,7 @@ body::before {
   top: 0;
   width: 100%;
   /* Reduced vertical padding from 20px to 10px */
-  padding: 21px 50px;
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,7 +108,8 @@ body::before {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  text-align: left;
   /* Ensure the container is dark so the blend works correctly */
   color: var(--neon-blue);
   font-weight: 900;
@@ -326,6 +327,7 @@ body::before {
   text-transform: none;
   font-weight: 300;
   line-height: 1.5;
+  text-align: center;
   max-width: 90%;
 
 }
@@ -572,7 +574,7 @@ body::before {
 /* Mobile & Responsive Adjustments */
 @media screen and (max-width: 768px) {
   .nav-header {
-    padding: 15px 20px;
+    padding: 12px 15px;
   }
 
   .logo {
@@ -648,9 +650,9 @@ body::before {
   }
 
   .powered-by {
-    letter-spacing: 0.2px;
-    font-size: 0.6rem;
-    padding: 0 10px;
+    letter-spacing: 0.1px;
+    font-size: 0.58rem;
+    padding: 0 5px;
     text-align: center;
     max-width: 100%;
     line-height: 1.4;
