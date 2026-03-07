@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
 
   --obsidian: #030712;
@@ -643,10 +647,14 @@ body::before {
   }
 
   .powered-by {
-    letter-spacing: 1px;
-    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    font-size: 0.65rem;
+    padding: 0 10px;
+    text-align: center;
   }
 }
+
+/* Cache-Buster: v1.0.2 - Fixed Mobile Alignment */
 
 @keyframes spin {
   to {
