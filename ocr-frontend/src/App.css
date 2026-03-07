@@ -48,7 +48,10 @@ body::before {
 
   position: fixed;
 
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
   background-image:
 
@@ -66,31 +69,33 @@ body::before {
 
 .nav-header {
   position: fixed;
-  top: 0; 
+  top: 0;
   width: 100%;
   /* Reduced vertical padding from 20px to 10px */
-  padding: 21px 50px; 
+  padding: 21px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(3, 7, 18, 0.8); /* Slightly more opaque for better legibility */
-  backdrop-filter: blur(10px);
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   box-sizing: border-box;
-  z-index: 10;
+  z-index: 1000;
 }
 
 /* Update the existing .logo class */
 .nav-logo-img {
-  height: 3rem; /* Adjust to match your text height */
+  height: 3rem;
+  /* Adjust to match your text height */
   width: auto;
-  
+
   /* 1. This removes the black background and keeps the gold */
-  mix-blend-mode: screen; 
-  
+  mix-blend-mode: screen;
+
   /* 2. This ensures no stray edges or grey boxes remain */
   filter: contrast(1.2) brightness(1.1);
-  
+
   /* 3. Removes any default image styling */
   display: block;
   background: transparent !important;
@@ -101,11 +106,12 @@ body::before {
   align-items: center;
   gap: 12px;
   /* Ensure the container is dark so the blend works correctly */
-  color: var(--neon-blue); 
-  font-weight: 900;           /* Makes it extra bold */
-  font-size: 1.4rem; 
+  color: var(--neon-blue);
+  font-weight: 900;
+  /* Makes it extra bold */
+  font-size: 1.4rem;
   letter-spacing: 2px;
-  
+
 }
 
 
@@ -116,13 +122,15 @@ body::before {
   align-items: center;
   min-height: 100vh;
   /* Increased top padding from 120px to 180px */
-  padding: 180px 20px 80px 20px; 
+  padding: 180px 20px 80px 20px;
 }
 
-.secure-tag { 
-  color: var(--neon-blue);    /* Applies the gold color */
-  font-size: 0.85rem; 
-  font-weight: 900;           /* Makes it bold */
+.secure-tag {
+  color: var(--neon-blue);
+  /* Applies the gold color */
+  font-size: 0.85rem;
+  font-weight: 900;
+  /* Makes it bold */
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 4px 10px;
@@ -140,7 +148,8 @@ body::before {
 
   backdrop-filter: blur(20px);
 
-  border: 1px solid rgba(212, 175, 55, 0.15); /* Gold Border */
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  /* Gold Border */
 
   border-radius: 40px;
 
@@ -154,7 +163,11 @@ body::before {
 
 
 
-.main-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
 
 .main-title span {
 
@@ -172,7 +185,10 @@ body::before {
 
 
 
-.sub-text { color: #94a3b8; margin-bottom: 40px; }
+.sub-text {
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
 
 
 
@@ -180,7 +196,8 @@ body::before {
 
   position: relative;
 
-  border: 1px dashed rgba(212, 175, 55, 0.3); /* Gold Dashed */
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  /* Gold Dashed */
 
   border-radius: 24px;
 
@@ -238,7 +255,10 @@ body::before {
 
   position: absolute;
 
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
   opacity: 0;
 
@@ -296,15 +316,13 @@ body::before {
 
   margin: 0;
 
-  font-size: 0.7rem;
-
+  font-size: 0.75rem;
   color: #64748b;
-
-  letter-spacing: 5px;
-
+  letter-spacing: 2px;
   text-transform: none;
-
   font-weight: 300;
+  line-height: 1.5;
+  max-width: 90%;
 
 }
 
@@ -384,7 +402,7 @@ body::before {
 
 .data-preview {
 
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 
   padding: 20px;
 
@@ -392,7 +410,8 @@ body::before {
 
   border: 1px solid rgba(212, 175, 55, 0.2);
 
-  color: #d4af37; /* Gold JSON text */
+  color: #d4af37;
+  /* Gold JSON text */
 
   font-size: 0.8rem;
 
@@ -400,7 +419,9 @@ body::before {
 
 
 
-.assets-box { text-align: center; }
+.assets-box {
+  text-align: center;
+}
 
 .asset-row {
 
@@ -414,15 +435,20 @@ body::before {
 
   margin-top: 10px;
 
-  flex-direction: column;
-
-  align-items: center;
-
 }
 
-.asset-card { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.asset-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
 
-.asset-label { font-size: 0.8rem; letter-spacing: 2px; color: #e2e8f0; }
+.asset-label {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #e2e8f0;
+}
 
 
 
@@ -456,9 +482,21 @@ body::before {
   margin-bottom: 45px;
 }
 
-.gen-icon { font-size: 2.8rem; }
-.gen-text h3 { margin: 0; font-size: 1.6rem; color: #fff; }
-.sub-text-small { margin-top: 6px; color: #94a3b8; font-size: 0.9rem; }
+.gen-icon {
+  font-size: 2.8rem;
+}
+
+.gen-text h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.sub-text-small {
+  margin-top: 6px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
 
 .stepper {
   display: flex;
@@ -486,7 +524,8 @@ body::before {
 }
 
 .step-item.active .step-dot {
-  background: var(--neon-blue); /* Gold #d4af37 */
+  background: var(--neon-blue);
+  /* Gold #d4af37 */
   box-shadow: 0 0 20px var(--neon-blue);
 }
 
@@ -498,7 +537,9 @@ body::before {
   letter-spacing: 1.5px;
 }
 
-.step-item.active .step-label { color: var(--neon-blue); }
+.step-item.active .step-label {
+  color: var(--neon-blue);
+}
 
 .step-line {
   position: absolute;
@@ -510,7 +551,9 @@ body::before {
   z-index: 1;
 }
 
-.step-item.active .step-line { background: rgba(212, 175, 55, 0.3); }
+.step-item.active .step-line {
+  background: rgba(212, 175, 55, 0.3);
+}
 
 .spinner-loader {
   width: 30px;
@@ -522,4 +565,91 @@ body::before {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+/* Mobile & Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .nav-header {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    gap: 8px;
+  }
+
+  .nav-logo-img {
+    height: 2.2rem;
+  }
+
+  .secure-tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  .container {
+    padding: 140px 15px 60px 15px;
+  }
+
+  .glass-panel {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .sub-text {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+
+  .upload-zone {
+    padding: 30px 15px;
+  }
+
+  .btn-scan {
+    padding: 15px 40px;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .result-display {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .asset-card img {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .stepper {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 10px 0;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .step-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  .step-line {
+    display: none;
+    /* Hide lines on mobile to avoid overlap */
+  }
+
+  .powered-by {
+    letter-spacing: 1px;
+    font-size: 0.7rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
